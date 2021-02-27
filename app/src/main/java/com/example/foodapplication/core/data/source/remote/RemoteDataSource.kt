@@ -2,8 +2,6 @@ package com.example.foodapplication.core.data.source.remote
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.foodapplication.core.data.source.remote.network.ApiResponse
 import com.example.foodapplication.core.data.source.remote.network.ApiService
 import com.example.foodapplication.core.data.source.remote.response.*
@@ -12,21 +10,12 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @SuppressLint("CheckResult")
-class RemoteDataSource private constructor(private val apiService:ApiService) {
-    companion object{
-        @Volatile
-        private var instance:RemoteDataSource? = null
-
-        fun getInstance(apiService: ApiService):RemoteDataSource =
-                instance ?: synchronized(this){
-                    instance ?: RemoteDataSource(apiService)
-                }
-    }
+@Singleton
+class RemoteDataSource @Inject constructor(private val apiService:ApiService) {
 
     fun getAllCooking():Flowable<ApiResponse<List<ResultsItemCooking>>>{
         val resultData = PublishSubject.create<ApiResponse<List<ResultsItemCooking>>>()

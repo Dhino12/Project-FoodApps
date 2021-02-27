@@ -1,5 +1,6 @@
 package com.example.foodapplication.ui.category.contentCategory
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -11,16 +12,24 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
 import com.example.foodapplication.core.data.Resource
 import com.example.foodapplication.databinding.FragmentListItemBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.example.foodapplication.ui.detail.food.DetailFoodActivity
+import javax.inject.Inject
 
 class ContentCategoryFragment: Fragment() {
+
+    @Inject
+    lateinit var factory:ViewModelFactory
+
+    private val contentViewModel:ContentCategoryViewModel by viewModels { factory }
 
     private var _binding:FragmentListItemBinding? = null
     private val binding get() = _binding!!
@@ -37,6 +46,11 @@ class ContentCategoryFragment: Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -45,9 +59,6 @@ class ContentCategoryFragment: Fragment() {
             
             val getTag = arguments?.getString(CONTENT_CATEGORY_TAG)
             Log.e("error_contentCateg",getTag.toString())
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            val contentViewModel = ViewModelProvider(this,factory)[ContentCategoryViewModel::class.java]
 
             toolbars.title = getTag?.replace("-"," ")
 

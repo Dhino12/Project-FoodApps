@@ -1,26 +1,13 @@
 package com.example.foodapplication.core.data.source.local
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import com.example.foodapplication.core.data.source.local.entity.*
 import com.example.foodapplication.core.data.source.local.room.CookingDao
-import com.example.foodapplication.core.data.source.remote.network.ApiResponse
-import com.example.foodapplication.core.data.source.remote.response.ResultsDetailCooking
 import io.reactivex.Flowable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalDataSource private constructor(private val cookingDao:CookingDao){
-    companion object{
-        private val INSTANCE : LocalDataSource? = null
-
-        fun getInstance(cookingDao: CookingDao):LocalDataSource =
-                INSTANCE ?: synchronized(this){
-                    INSTANCE ?: LocalDataSource(cookingDao)
-                }
-    }
+@Singleton
+class LocalDataSource @Inject constructor(private val cookingDao:CookingDao){
 
     // =========== Cooking ===========
     fun getAllCooking():Flowable<List<CookingEntity>> = cookingDao.getAllCooking()

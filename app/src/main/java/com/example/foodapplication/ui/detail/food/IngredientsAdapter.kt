@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodapplication.R
 import com.example.foodapplication.databinding.ItemIngredientsBinding
-import kotlinx.android.synthetic.main.item_ingredients.view.*
 
 class IngredientsAdapter(private val mIngredients:List<String>):RecyclerView.Adapter<IngredientsAdapter.IngredientsViewHolder>() {
     class IngredientsViewHolder (itemView:View):RecyclerView.ViewHolder(itemView){

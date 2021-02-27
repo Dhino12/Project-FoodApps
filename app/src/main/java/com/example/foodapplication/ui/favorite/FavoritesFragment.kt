@@ -1,5 +1,6 @@
 package com.example.foodapplication.ui.favorite
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,16 +10,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
 import com.example.foodapplication.databinding.FragmentListItemBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.example.foodapplication.ui.detail.food.DetailFoodActivity
+import javax.inject.Inject
 
 class FavoritesFragment : Fragment() {
+
+    @Inject
+    lateinit var factory:ViewModelFactory
+
+    private val viewModelFavorite:FavoriteFoodViewModel by viewModels { factory }
 
     private var _binding:FragmentListItemBinding? = null
     private lateinit var toolbar: Toolbar
@@ -35,6 +44,11 @@ class FavoritesFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -49,9 +63,6 @@ class FavoritesFragment : Fragment() {
                 intent.putExtra(DetailFoodActivity.EXTRA_TITLE_COOKING, selectedData.title)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            val viewModelFavorite = ViewModelProvider(this, factory)[FavoriteFoodViewModel::class.java]
 
             viewModelFavorite.favoriteData.observe(viewLifecycleOwner) { dataFavorite ->
                 if(dataFavorite.isNullOrEmpty()){

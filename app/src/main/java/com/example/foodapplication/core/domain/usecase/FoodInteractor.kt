@@ -8,8 +8,9 @@ import com.example.foodapplication.core.domain.model.Cooking
 import com.example.foodapplication.core.domain.model.Search
 import com.example.foodapplication.core.domain.repository.IFoodRepository
 import io.reactivex.Flowable
+import javax.inject.Inject
 
-class FoodInteractor(private val foodRepository: IFoodRepository):FoodUseCase {
+class FoodInteractor @Inject constructor(private val foodRepository: IFoodRepository):FoodUseCase {
 
     override fun getAllCooking(): Flowable<Resource<List<Cooking>>> = foodRepository.getAllCooking()
 

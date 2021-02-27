@@ -2,7 +2,7 @@ package com.example.foodapplication.core.data
 
 import android.annotation.SuppressLint
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LifecycleOwner
 import com.example.foodapplication.core.data.source.local.LocalDataSource
 import com.example.foodapplication.core.data.source.remote.RemoteDataSource
 import com.example.foodapplication.core.data.source.remote.network.ApiResponse
@@ -16,31 +16,18 @@ import com.example.foodapplication.core.util.AppExecutors
 import com.example.foodapplication.core.util.DataMapper
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CookingRepository private constructor(
+@Singleton
+class CookingRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private  val localDataSource:LocalDataSource,
-    private val appExecutors: AppExecutors,
-    private val lifecycleOwner: LifecycleOwner?
+    private val appExecutors: AppExecutors
 ): IFoodRepository {
-    companion object{
-        @Volatile
-        private var instance:CookingRepository? = null
-
-        fun getInstance(
-                remoteDataSource: RemoteDataSource,
-                localDataSource: LocalDataSource,
-                appExecutors: AppExecutors,
-                lifecycleOwner: LifecycleOwner?
-        ):CookingRepository =
-            instance ?: synchronized(this){
-                instance ?: CookingRepository(remoteDataSource, localDataSource, appExecutors, lifecycleOwner)
-            }
-    }
 
     override fun getAllCooking():Flowable<Resource<List<Cooking>>> =
         object : NetworkBoundResource<List<Cooking>, List<ResultsItemCooking>>(){
@@ -215,8 +202,6 @@ class CookingRepository private constructor(
                     }
                     Log.e("errorResponse SearchRESPONSE", response.toString())
                 }
-        }else{
-            Log.e("error lifeCycleOwner", (lifecycleOwner == null).toString())
         }
 
         return dataSearch.toFlowable(BackpressureStrategy.BUFFER)

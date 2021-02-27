@@ -1,5 +1,6 @@
 package com.example.foodapplication.ui.category
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -8,20 +9,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
 import com.example.foodapplication.core.data.Resource
 import com.example.foodapplication.databinding.FragmentCategoryBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.example.foodapplication.ui.category.contentCategory.ContentCategoryFragment
+import javax.inject.Inject
 
 class ListCategoryFragment : Fragment() {
 
-    private lateinit var listCategoryViewModel:ListCategoryViewModel
+    @Inject
+    lateinit var factory:ViewModelFactory
+
+    private val listCategoryViewModel:ListCategoryViewModel by viewModels { factory }
 
     private var _binding:FragmentCategoryBinding? = null
     private val binding get() = _binding!!
@@ -35,11 +42,13 @@ class ListCategoryFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val factory = ViewModelFactory.getInstance(requireActivity())
-        listCategoryViewModel = ViewModelProvider(this, factory)[ListCategoryViewModel::class.java]
 
         if(activity != null){
             val listCategoryAdapter = ListCategoryAdapter()

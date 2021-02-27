@@ -1,5 +1,6 @@
 package com.example.foodapplication.ui.home
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
 import com.example.foodapplication.core.data.Resource
 import com.example.foodapplication.core.data.source.local.entity.ArticleEntity
@@ -23,10 +26,14 @@ import com.example.foodapplication.databinding.FragmentHomeBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.example.foodapplication.ui.detail.food.DetailFoodActivity
 import com.example.foodapplication.ui.home.listItem.ListItemFragment
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val homeViewModel: HomeViewModel by viewModels { factory }
 
     private var _binding: FragmentHomeBinding? = null
     private var btn_forwardViewArticle:Button? = null
@@ -42,6 +49,11 @@ class HomeFragment : Fragment() {
         btn_forwardViewArticle = _binding!!.tvArticle
         btn_forwardViewCooking = _binding!!.tvCookingMenu
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,9 +82,6 @@ class HomeFragment : Fragment() {
                 intent.putExtra(DetailFoodActivity.EXTRA_ARTICLE_ID, selectedData.key)
                 startActivity(intent)
             }
-
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            homeViewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
 
             homeViewModel.cook.observe(viewLifecycleOwner) { food ->
                 if(food != null){

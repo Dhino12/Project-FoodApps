@@ -11,15 +11,24 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
 import com.example.foodapplication.core.data.Resource
 import com.example.foodapplication.databinding.FragmentSearchBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.example.foodapplication.ui.detail.food.DetailFoodActivity
+import javax.inject.Inject
 
 class SearchFragment : Fragment() {
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel:SearchViewModel by viewModels { factory }
 
     private lateinit var _binding:FragmentSearchBinding
     private val binding get() = _binding!!
@@ -33,14 +42,17 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         if(activity != null){
             Log.e("error SearchFragment", "masuk SearchFragment")
 
-            val factory = ViewModelFactory.getInstance(requireActivity(), viewLifecycleOwner)
-            val viewModel = ViewModelProvider(requireActivity(),factory)[SearchViewModel::class.java]
             val searchAdapter = SearchAdapter()
 
             searchAdapter.onItemClicked = {
@@ -71,8 +83,7 @@ class SearchFragment : Fragment() {
                     if(query != null){
                         viewModel.setQuerySearch(query)
                         binding.progressBar.visibility = View.VISIBLE
-                        viewModel.search.observe(viewLifecycleOwner,{
-                            foodSearch ->
+                        viewModel.search.observe(viewLifecycleOwner) { foodSearch ->
                             when(foodSearch){
                                 is Resource.Success -> {
                                     if(foodSearch.data.isNullOrEmpty()){
@@ -95,7 +106,7 @@ class SearchFragment : Fragment() {
                                     Toast.makeText(activity, foodSearch.message.toString(), Toast.LENGTH_SHORT).show()
                                 }
                             }
-                        })
+                        }
                     }
                     return false
                 }

@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Food Application</string>
+    <string name="title_home">Home</string>
+    <string name="title_category">Category</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="foodImageDescription">foodImage</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="title">title</string>
+    <string name="tags">tags</string>
+    <string name="times">times</string>
+    <string name="mudah">mudah</string>
+    <string name="porsi">porsi</string>
+    <string name="nama_makanan">Nama Makanan</string>
+    <string name="article_list">Article List</string>
+    <string name="cooking_list">Cooking List</string>
+    <string name="dificulty">Dificulty</string>
+    <string name="description">Deskripsi</string>
+    <string name="young_red">#F53783</string>
+    <string name="orange">#FF8C00</string>
+    <string name="queryHint">\"Mau Resep Apa ?</string>
+    <color name="trapnsparent">#00FFFFFF</color>
+</resources>

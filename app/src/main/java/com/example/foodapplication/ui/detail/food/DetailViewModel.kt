@@ -3,11 +3,11 @@ package com.example.foodapplication.ui.detail.food
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.foodapplication.core.data.Resource
-import com.example.foodapplication.core.domain.model.Article
 import com.example.foodapplication.core.domain.model.Cooking
 import com.example.foodapplication.core.domain.usecase.FoodUseCase
+import javax.inject.Inject
 
-class DetailViewModel(private val foodUseCase:FoodUseCase):ViewModel() {
+class DetailViewModel @Inject constructor(private val foodUseCase:FoodUseCase):ViewModel() {
     private var titleCooking = MutableLiveData<List<String>>()
     private var titleArticle = MutableLiveData<List<String>>()
 

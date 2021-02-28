@@ -1,14 +1,12 @@
 package com.example.foodapplication.ui.search
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.foodapplication.core.data.CookingRepository
 import com.example.foodapplication.core.data.Resource
 import com.example.foodapplication.core.domain.model.Search
 import com.example.foodapplication.core.domain.usecase.FoodUseCase
-import io.reactivex.Flowable
+import javax.inject.Inject
 
-class SearchViewModel(foodUseCase: FoodUseCase):ViewModel() {
+class SearchViewModel @Inject constructor(foodUseCase: FoodUseCase):ViewModel() {
     private val querySearch = MutableLiveData<String>()
     fun setQuerySearch(query:String){
         this.querySearch.value = query

@@ -6,8 +6,9 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.foodapplication.core.data.CookingRepository
 import com.example.foodapplication.core.domain.usecase.FoodUseCase
+import javax.inject.Inject
 
-class ContentCategoryViewModel(foodUseCase: FoodUseCase):ViewModel() {
+class ContentCategoryViewModel @Inject constructor(foodUseCase: FoodUseCase):ViewModel() {
     private val tagContent = MutableLiveData<String>()
 
     fun setSelectedCategory(tags:String?){

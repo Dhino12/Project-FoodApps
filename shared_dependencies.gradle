@@ -1,0 +1,55 @@
+dependencies{
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout_version"
+
+    // Reactive Lifecycle
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
+
+    // Rx Java
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:2.3.0"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    api "androidx.activity:activity-ktx:$activity_ktx_version"
+    api "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+
+    // RecyclerView
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
+    // Timeline
+    implementation "com.github.vipulasri:timelineview:$timeline"
+
+    // Observable ScrollView
+    implementation "com.github.ksoichiro:android-observablescrollview:$ksoichiro_observable_scroll"
+    implementation 'com.nineoldandroids:library:2.4.0'
+
+    // CardView
+    implementation "androidx.cardview:cardview:$cardview_version"
+
+    // MaterialDesign
+    implementation "com.google.android.material:material:$material_version"
+
+    // ViewModel and LiveData
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // JUnit Test
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+
+    // Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    //by viewModels di Activity dan Fragment
+    implementation "androidx.activity:activity-ktx:$activity_ktx_version"
+    implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+}

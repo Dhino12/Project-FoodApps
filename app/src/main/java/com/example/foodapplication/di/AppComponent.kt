@@ -4,7 +4,6 @@ import com.example.core.di.CoreComponent
 import com.example.foodapplication.ui.category.ListCategoryFragment
 import com.example.foodapplication.ui.category.contentCategory.ContentCategoryFragment
 import com.example.foodapplication.ui.detail.food.DetailFoodActivity
-import com.example.foodapplication.ui.favorite.FavoritesFragment
 import com.example.foodapplication.ui.home.HomeFragment
 import com.example.foodapplication.ui.search.SearchFragment
 import dagger.Component
@@ -22,7 +21,6 @@ interface AppComponent {
     }
 
     fun inject(fragment:HomeFragment)
-    fun inject(fragment:FavoritesFragment)
     fun inject(fragment:ListCategoryFragment)
     fun inject(fragment:ContentCategoryFragment)
     fun inject(fragment:SearchFragment)

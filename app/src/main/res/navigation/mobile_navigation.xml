@@ -43,7 +43,8 @@
         android:label="DetailFoodActivity" />
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.example.foodapplication.ui.favorite.FavoritesFragment"
+        android:name="com.example.foodapplication.favorite.ui.FavoritesFragment"
+        app:moduleName="Favorite"
         android:label="fragment_favorite" />
     <fragment
         android:id="@+id/searchFragment"

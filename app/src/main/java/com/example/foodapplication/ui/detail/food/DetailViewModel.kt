@@ -2,9 +2,9 @@ package com.example.foodapplication.ui.detail.food
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.foodapplication.core.data.Resource
-import com.example.foodapplication.core.domain.model.Cooking
-import com.example.foodapplication.core.domain.usecase.FoodUseCase
+import com.example.core.data.Resource
+import com.example.core.domain.model.Cooking
+import com.example.core.domain.usecase.FoodUseCase
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(private val foodUseCase:FoodUseCase):ViewModel() {

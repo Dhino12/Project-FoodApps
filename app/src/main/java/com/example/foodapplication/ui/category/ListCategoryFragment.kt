@@ -2,22 +2,20 @@ package com.example.foodapplication.ui.category
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
-import com.example.foodapplication.core.data.Resource
+import com.example.core.data.Resource
+import com.example.core.ui.ListCategoryAdapter
 import com.example.foodapplication.databinding.FragmentCategoryBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.example.foodapplication.ui.category.contentCategory.ContentCategoryFragment

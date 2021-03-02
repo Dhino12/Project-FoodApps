@@ -12,9 +12,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import com.example.foodapplication.MyApplication
-import com.example.foodapplication.core.data.Resource
-import com.example.foodapplication.core.domain.model.Article
-import com.example.foodapplication.core.util.DataToView
+import com.example.core.data.Resource
+import com.example.core.domain.model.Article
+import com.example.foodapplication.util.DataToView
 import com.example.foodapplication.databinding.ActivityDetailFoodBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks
@@ -30,7 +30,7 @@ class DetailFoodActivity : AppCompatActivity(), ObservableScrollViewCallbacks {
     private val viewModel:DetailViewModel by viewModels { factory }
 
     private lateinit var binding:ActivityDetailFoodBinding
-    private lateinit var dataToView:DataToView
+    private lateinit var dataToView: DataToView
 
     companion object{
         const val EXTRA_TITLE_COOKING = "cooking_title_key"

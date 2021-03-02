@@ -11,10 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.core.ui.FavoriteAdapter
 import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
 import com.example.foodapplication.databinding.FragmentListItemBinding

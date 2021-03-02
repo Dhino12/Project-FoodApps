@@ -12,12 +12,12 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodapplication.MyApplication
 import com.example.foodapplication.R
-import com.example.foodapplication.core.data.Resource
+import com.example.core.data.Resource
+import com.example.core.ui.SearchAdapter
 import com.example.foodapplication.databinding.FragmentSearchBinding
 import com.example.foodapplication.ui.ViewModelFactory
 import com.example.foodapplication.ui.detail.food.DetailFoodActivity
@@ -93,7 +93,7 @@ class SearchFragment : Fragment() {
                                         binding.progressBar.visibility = View.GONE
                                         searchAdapter.setData(foodSearch.data)
 
-                                        Log.e("error SearchData", foodSearch.data.size.toString())
+                                        Log.e("error SearchData", foodSearch.data?.size.toString())
 
                                         with(binding.rvSearchFood) {
                                             layoutManager = LinearLayoutManager(activity)

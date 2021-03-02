@@ -1,7 +1,7 @@
 package com.example.foodapplication.di
 
-import com.example.foodapplication.core.domain.usecase.FoodInteractor
-import com.example.foodapplication.core.domain.usecase.FoodUseCase
+import com.example.core.domain.usecase.FoodInteractor
+import com.example.core.domain.usecase.FoodUseCase
 import dagger.Binds
 import dagger.Module
 

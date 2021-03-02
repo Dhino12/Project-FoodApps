@@ -1,8 +1,8 @@
 package com.example.foodapplication
 
 import android.app.Application
-import com.example.foodapplication.core.di.CoreComponent
-import com.example.foodapplication.core.di.DaggerCoreComponent
+import com.example.core.di.CoreComponent
+import com.example.core.di.DaggerCoreComponent
 import com.example.foodapplication.di.AppComponent
 import com.example.foodapplication.di.DaggerAppComponent
 

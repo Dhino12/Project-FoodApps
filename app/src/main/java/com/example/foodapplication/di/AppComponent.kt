@@ -1,6 +1,6 @@
 package com.example.foodapplication.di
 
-import com.example.foodapplication.core.di.CoreComponent
+import com.example.core.di.CoreComponent
 import com.example.foodapplication.ui.category.ListCategoryFragment
 import com.example.foodapplication.ui.category.contentCategory.ContentCategoryFragment
 import com.example.foodapplication.ui.detail.food.DetailFoodActivity

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodapplication.MyApplication
@@ -33,8 +34,6 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels { factory }
 
     private var _binding: FragmentHomeBinding? = null
-    private var btn_forwardViewArticle:Button? = null
-    private var btn_forwardViewCooking:Button? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -43,8 +42,6 @@ class HomeFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        btn_forwardViewArticle = _binding!!.tvArticle
-        btn_forwardViewCooking = _binding!!.tvCookingMenu
         return binding.root
     }
 
@@ -86,9 +83,14 @@ class HomeFragment : Fragment() {
                         is Resource.Success -> {
                             cookAdapter.setData(food.data)
                             arrayListCooking.addAll(food.data!!)
-                            btn_forwardViewCooking?.setOnClickListener { direction -> val mBundle = Bundle()
+                            binding.btnCookingMenu?.setOnClickListener { direction -> val mBundle = Bundle()
                                 mBundle.putParcelableArrayList(ListItemFragment.COOKING, arrayListCooking)
                                 direction.findNavController().navigate(R.id.action_navigation_home_to_listItemFragment, mBundle)
+                            }
+                            binding.randomButton?.setOnClickListener {
+                                val moveToRandom = Intent(activity, Class.forName("com.example.foodapplication.random.ui.RandomActivity"))
+                                moveToRandom.putParcelableArrayListExtra("keyRandom", arrayListCooking)
+                                startActivity(moveToRandom)
                             }
                         }
                     }
@@ -101,7 +103,7 @@ class HomeFragment : Fragment() {
                         is Resource.Success -> {
                             articleAdapter.setData(article.data)
                             arrayListArticle.addAll(article.data!!)
-                            btn_forwardViewArticle?.setOnClickListener { direction -> val mBundle = Bundle()
+                            binding.btnArticle?.setOnClickListener { direction -> val mBundle = Bundle()
                                 mBundle.putParcelableArrayList(ListItemFragment.ARTICLE, arrayListArticle)
                                 direction.findNavController().navigate(R.id.action_navigation_home_to_listItemFragment, mBundle)
                             }

@@ -74,7 +74,6 @@
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
-                                android:text="@string/nama_makanan"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:textColor="@color/black"/>
@@ -168,7 +167,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="10dp"
-                                        android:text="@string/dificulty"
+                                        android:text="@string/difficulty"
                                         android:theme="@style/textTitleItemCooking"/>
                                     <TextView
                                         android:id="@+id/dificulty_content_detail"
@@ -250,7 +249,7 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="@string/nama_makanan"
+            android:text="@string/food_name"
             android:minHeight="?attr/actionBarSize"
             android:textColor="@android:color/white"
             android:textSize="20sp" />

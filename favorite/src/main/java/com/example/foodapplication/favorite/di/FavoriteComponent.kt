@@ -8,8 +8,8 @@ import dagger.Component
 
 @AppScope
 @Component(
-        dependencies = [CoreComponent::class],
-        modules = [AppModule::class, ViewModelModuleFavorite::class]
+    dependencies = [CoreComponent::class],
+    modules = [AppModule::class, ViewModelModuleFavorite::class]
 )
 interface FavoriteComponent{
 

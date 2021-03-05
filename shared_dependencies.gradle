@@ -55,7 +55,7 @@ dependencies{
 
     // Mockito
     testImplementation "org.mockito:mockito-core:$mock_version"
-    androidTestImplementation "org.mockito:mockito-android: $mock_android_test_version"
+    // androidTestImplementation "org.mockito:mockito-android: $mock_android_test_version"
 
     // Arch Testing
     testImplementation 'android.arch.core:core-testing:1.1.1'

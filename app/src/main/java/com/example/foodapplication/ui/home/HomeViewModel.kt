@@ -9,4 +9,7 @@ class HomeViewModel @Inject constructor(foodUseCase: FoodUseCase) :ViewModel() {
 
     val cook = LiveDataReactiveStreams.fromPublisher(foodUseCase.getAllCooking())
     val article = LiveDataReactiveStreams.fromPublisher(foodUseCase.getAllArticle())
+
+    val cookForTest = foodUseCase.getAllCooking()
+
 }
